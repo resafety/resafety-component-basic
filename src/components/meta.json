@@ -1,0 +1,325 @@
+{
+    "description": "模板组件",
+    "name": "${name}",
+    "version": "1.0.0",
+    "config": {
+        "main": {
+            "defaultAction": {
+                "create": true,
+                "@create": {
+                    "name": "创建",
+                    "type": "boolean",
+                    "layout": "group-name-behind"
+                },
+                "show": true,
+                "@show": {
+                    "name": "显示",
+                    "comment": "如果初始化不创建，则当组件创建后默认该显示状态",
+                    "type": "boolean",
+                    "layout": "group-name-behind"
+                }
+            },
+            "@defaultAction": {
+                "name": "默认",
+                "comment": "初始化时默认执行的行为",
+                "type": "json",
+                "layout": [
+                    1,
+                    2
+                ]
+            },
+            "layout": {
+                "left": 0,
+                "@left": {
+                    "name": "X",
+                    "type": "int",
+                    "unit": "px",
+                    "layout": "group-name-bottom"
+                },
+                "top": 0,
+                "@top": {
+                    "name": "Y",
+                    "type": "int",
+                    "unit": "px",
+                    "layout": "group-name-bottom"
+                },
+                "width": 96,
+                "@width": {
+                    "name": "宽度",
+                    "type": "int",
+                    "unit": "px",
+                    "range": "[0, +∞)",
+                    "layout": "group-name-bottom"
+                },
+                "height": 40,
+                "@height": {
+                    "name": "高度",
+                    "type": "int",
+                    "unit": "px",
+                    "range": "[0, +∞)",
+                    "layout": "group-name-bottom"
+                }
+            },
+            "@layout": {
+                "name": "位置尺寸",
+                "type": "json",
+                "layout": [
+                    2,
+                    2
+                ]
+            },
+            "padding": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "@padding": {
+                "name": "内边距",
+                "type": "padding"
+            },
+            "opacity": 100,
+            "@opacity": {
+                "name": "透明度",
+                "type": "int",
+                "range": "[0, 100]"
+            }
+        },
+        "@main": {
+            "name": "全局",
+            "comment": "全局样式，所有组件都具备的通用样式配置",
+            "type": "json",
+            "required": true,
+            "default": null,
+            "range": null,
+            "layout": "base-collapse"
+        },
+        "option": {
+            "base": {
+                "normal": {
+                    "font": {
+                        "fontFamily": "Microsoft YaHei",
+                        "fontSize": 14,
+                        "fontWeight": "normal",
+                        "fontStyle": "normal",
+                        "color": "#fff"
+                    },
+                    "@font": {
+                        "name": "文本样式",
+                        "type": "font"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "@x": {
+                            "name": "x轴",
+                            "type": "int",
+                            "layout": "group-name-bottom"
+                        },
+                        "y": 0,
+                        "@y": {
+                            "name": "y轴",
+                            "type": "int",
+                            "layout": "group-name-bottom"
+                        }
+                    },
+                    "@offset": {
+                        "name": "文字偏移",
+                        "type": "json",
+                        "layout": [
+                            1,
+                            2
+                        ]
+                    },
+                    "img": "",
+                    "@img": {
+                        "name": "背景图",
+                        "type": "image"
+                    },
+                    "backgroundColor": "#00202E",
+                    "@backgroundColor": {
+                        "name": "背景色",
+                        "type": "color"
+                    },
+                    "boxtShadow": {
+                        "show": true,
+                        "@show": {
+                            "name": "是否显示",
+                            "type": "boolean"
+                        },
+                        "color": "",
+                        "@color": {
+                            "name": "阴影颜色",
+                            "type": "color"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "@x": {
+                                "name": "x轴",
+                                "type": "int",
+                                "layout": "group-name-bottom"
+                            },
+                            "y": 0,
+                            "@y": {
+                                "name": "y轴",
+                                "type": "int",
+                                "layout": "group-name-bottom"
+                            }
+                        },
+                        "@offset": {
+                            "name": "位置偏移",
+                            "type": "json",
+                            "layout": [
+                                1,
+                                2
+                            ]
+                        },
+                        "radius": "",
+                        "@radius": {
+                            "name": "模糊",
+                            "type": "int"
+                        }
+                    },
+                    "@boxtShadow": {
+                        "name": "阴影",
+                        "type": "json",
+                        "layout": "base-collapse"
+                    }
+                },
+                "@normal": {
+                    "name": "默认样式",
+                    "type": "json",
+                    "layout": "base-collapse"
+                },
+                "focus": {
+                    "font": {
+                        "fontFamily": "Microsoft YaHei",
+                        "fontSize": 14,
+                        "fontWeight": "normal",
+                        "fontStyle": "normal",
+                        "color": "#fff"
+                    },
+                    "@font": {
+                        "name": "文本样式",
+                        "type": "font"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "@x": {
+                            "name": "x轴",
+                            "type": "int",
+                            "layout": "group-name-bottom"
+                        },
+                        "y": 0,
+                        "@y": {
+                            "name": "y轴",
+                            "type": "int",
+                            "layout": "group-name-bottom"
+                        }
+                    },
+                    "@offset": {
+                        "name": "文字偏移",
+                        "type": "json",
+                        "layout": [
+                            1,
+                            2
+                        ]
+                    },
+                    "img": "",
+                    "@img": {
+                        "name": "背景图",
+                        "type": "image"
+                    },
+                    "backgroundColor": "#00202E",
+                    "@backgroundColor": {
+                        "name": "背景色",
+                        "type": "color"
+                    },
+                    "boxtShadow": {
+                        "show": true,
+                        "@show": {
+                            "name": "是否显示",
+                            "type": "boolean"
+                        },
+                        "color": "",
+                        "@color": {
+                            "name": "阴影颜色",
+                            "type": "color"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "@x": {
+                                "name": "x轴",
+                                "type": "int",
+                                "layout": "group-name-bottom"
+                            },
+                            "y": 0,
+                            "@y": {
+                                "name": "y轴",
+                                "type": "int",
+                                "layout": "group-name-bottom"
+                            }
+                        },
+                        "@offset": {
+                            "name": "位置偏移",
+                            "type": "json",
+                            "layout": [
+                                1,
+                                2
+                            ]
+                        },
+                        "radius": "",
+                        "@radius": {
+                            "name": "模糊",
+                            "type": "int"
+                        }
+                    },
+                    "@boxtShadow": {
+                        "name": "阴影",
+                        "type": "json",
+                        "layout": "base-collapse"
+                    }
+                },
+                "@focus": {
+                    "name": "选中样式",
+                    "type": "json",
+                    "layout": "base-collapse"
+                }
+            },
+            "@base": {
+                "name": "基础",
+                "type": "json",
+                "layout": "base-collapse"
+            }
+        },
+        "@option": {
+            "name": "配置项",
+            "type": "json",
+            "layout": "base-none"
+        }
+    },
+    "datasource": {
+        "dimensions": [
+            {
+                "key": "content",
+                "name": "按钮内容"
+            }
+        ],
+        "dataset": [
+            {
+                "content": "按钮"
+            }
+        ]
+    },
+    "event": {
+        "area": [
+            {
+                "code": "",
+                "label": "全局"
+            },
+            {
+                "code": "text",
+                "label": "文字"
+            }
+        ]
+    }
+}
