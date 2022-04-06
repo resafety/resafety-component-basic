@@ -91,6 +91,7 @@ export default {
     },
     data() {
         return {
+            isShow: this.config.main.defaultAction.show || true,
             option: this.config.option,
             errorUrl:
                 "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAgCAYAAABgrToAAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyVpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDA2IDc5LjE2NDc1MywgMjAyMS8wMi8xNS0xMTo1MjoxMyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIyLjMgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6N0M0QkVFQ0YxNTI0MTFFQzkzMTNFRjAxNTY4MTc0QUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6N0M0QkVFRDAxNTI0MTFFQzkzMTNFRjAxNTY4MTc0QUMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3QzRCRUVDRDE1MjQxMUVDOTMxM0VGMDE1NjgxNzRBQyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3QzRCRUVDRTE1MjQxMUVDOTMxM0VGMDE1NjgxNzRBQyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ph45UV0AAAInSURBVHjazJhLKEVBGMcHl8hCkVgSojwX7IgsJLGRJErCwiMRGxsbKRZKyWvhTVJEwkaSlTySyJIiSV4livKI/9R3aprOcR7Xdeer37l35s698+vM43xzfdjspz9jrAyEMbXiEcy7cGkHnUzNiPLFJYapGzEuqWIQnHlZKhY0agVZcBFse1kwRxT0ZYqH8oIub6xMkAcewBp4V0mwACyDACofgyzwosoQDwhyPFJBnUpzMFqnLuGvBH1ACgh0Q/BAp27nLwRDwQbNmX0Q7lCwGlwK5Vkw6e4i4UOwSjs8j2SwBXLBvU3BUxBHI/EgyTq6g/lgV5DTIokkndzJD3BoRc5MsAWsgxAqX4Na8OxQkvdVCBLdfZLwbWAU9Amf88mdAcZok7Ur6QdmaKqcgAqngryjTVAj1M2DbHBD5T2bklxuGpQLfU5blZQFp2hn16KDfvhNamdVUpZjkmSVXcEgen0FxaALfBt810xST66ZhlnrewLU252DVyCTnplmYSQZqSPXAPpBiSDJY+g3SVmQN04HRzYWmp7kmY7cML1/J8klqd82K4IL4M7B3iZLBhvIMUGyFMwJdb10gPNYsiBL8rgFKwbtv0ClJNkNWj2ZzciSESZHWk1yXKgr8nS6pUk+CYuOmUjyJ9TIf2bUXDKe8r99C+2/aa4yOYH1ZMp/Z3PBaZI8mWgyEuTLP02lk6Ys2Kjiufhc4WPxOb+DPeCCKfr3248AAwBbD3+JkNJ8WwAAAABJRU5ErkJggg==",
@@ -101,6 +102,20 @@ export default {
         };
     },
     computed: {
+        mainCssVars() {
+            const { left, top, width, height } = this.config.main.layout;
+            const { padding, opacity, backgroundImage, backgroundColor } = this.config.main;
+            return {
+                "--left": `${left}px`,
+                "--top": `${top}px`,
+                "--width": `${width}px`,
+                "--height": `${height}px`,
+                "--padding": padding,
+                "--opacity": opacity,
+                "--backgroundColor": backgroundColor,
+                "--backgroundImage": `url(${backgroundImage})`,
+            };
+        },
 
         normalStyle() {
             const { font, offset, boxtShadow, img, backgroundColor } = this.config.option.base.normal;
@@ -232,6 +247,20 @@ export default {
 <style scoped lang='scss'>
 .${name} {
     /* 基本 */
+    position: absolute;
+    left: var(--left);
+    top: var(--top);
+    width: var(--width);
+    height: var(--height);
+    opacity: var(--opacity);
+    padding: var(--padding);
+    background-color: var(--backgroundColor);
+    background-image: var(--backgroundImage);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    overflow: hidden;
+
     /* 文字样式 */
     font-family: var(--normalFontFamily);
     font-size: var(--normalFontSize);
@@ -241,10 +270,7 @@ export default {
     background-color: var(--normalBackgroundColor);
     background-image: var(--normalImg);
     border-width: 0px;
-    // /deep/ .rs-button.rs-button-primary {
-    text-shadow: var(--normalShadowX) var(--normalShadowY)
-        var(--normalShadowRadius) var(--normalShadowColor);
-    // }
+    text-shadow: var(--normalShadowX) var(--normalShadowY) var(--normalShadowRadius) var(--normalShadowColor);
     & > span {
         display: inline-block;
         transform: translate(
@@ -252,9 +278,7 @@ export default {
             var(--normalTransiformY)
         );
     }
-    // /deep/ .rs-button > span {
-    // transform: translate(var(--normalTransiformX) var(--normalTransiformY));
-    // }
+
 
     &:active {
         /* 文字样式 */
@@ -266,13 +290,8 @@ export default {
         background-color: var(--focuslBackgroundColor);
         background-image: var(--focusImg);
 
-        // /deep/ .rs-button.rs-button-primary {
-        text-shadow: var(--focusShadowX) var(--focusShadowY)
-            var(--focusShadowRadius) var(--focusShadowColor);
-        // }
+        text-shadow: var(--focusShadowX) var(--focusShadowY) var(--focusShadowRadius) var(--focusShadowColor);
 
-        // /deep/ .rs-button > span {
-        // }
         & > span {
             transform: translate(
                 var(--focusTransiformX),
